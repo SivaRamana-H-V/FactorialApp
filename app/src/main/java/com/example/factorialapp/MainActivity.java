@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
                     valueofn.setText(n);
 
                     popupWindow.setTouchable(true);
-                    popupWindow.setHeight(2000);
-                    popupWindow.setWidth(1200);
+                    popupWindow.setHeight(1800);
+                    popupWindow.setWidth(800);
                     //popupWindow.setFocusable(true);
                     //popupWindow.update();
                     button.setOnClickListener(new View.OnClickListener() {
