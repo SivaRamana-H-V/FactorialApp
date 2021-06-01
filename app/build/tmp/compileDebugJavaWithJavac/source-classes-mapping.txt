@@ -1,8 +1,8 @@
 com/example/factorialapp/BuildConfig.java
  com.example.factorialapp.BuildConfig
+com/example/factorialapp/factorial.java
+ com.example.factorialapp.factorial
 com/example/factorialapp/MainActivity.java
  com.example.factorialapp.MainActivity
  com.example.factorialapp.MainActivity$1
  com.example.factorialapp.MainActivity$1$1
-com/example/factorialapp/factorial.java
- com.example.factorialapp.factorial

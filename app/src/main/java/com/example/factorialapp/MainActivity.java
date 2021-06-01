@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Kindly enter the value of n", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                Toast.makeText(MainActivity.this, "Request queued...", Toast.LENGTH_SHORT).show();
                 
                 String n = editText.getText().toString();
                 //calling the fact method of the factorial class to get the factorial of n
@@ -64,8 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                     ans = factorial.fact(Integer.parseInt(n));
 
-                long endTime = System.nanoTime();
-                Toast.makeText(MainActivity.this, "Time taken = "+(endTime - startTime) +"ns", Toast.LENGTH_LONG).show();
+
 
                 //Toast.makeText(MainActivity.this, ans.toString(), Toast.LENGTH_SHORT).show();
 
@@ -97,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
 
                     popupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
                 }
+                long endTime = System.nanoTime();
+                Toast.makeText(MainActivity.this, "Time taken = "+(endTime - startTime) +"ns", Toast.LENGTH_LONG).show();
             }
         });
     }
