@@ -1,10 +1,32 @@
 package com.example.factorialapp;
 
+import android.content.Context;
+
+import org.json.JSONException;
+
 import java.math.BigInteger;
 
 public class factorial {
+    int n;
+    Context context;
 
-
+    factorial(int n, Context context){
+        this.n=n;
+        this.context=context;
+    }
+    String code=""+
+    "static void fact(int N)"+
+    "{"+
+        "BigInteger f = new BigInteger("+"\"1\""+");"+
+        "for (int i = 2; i <= N; i++)"+
+            "f = f.multiply(BigInteger.valueOf(i));"+
+        "System.out.print(f);"+
+    "}";
+    String factorialUtil() throws JSONException {
+        OffloadCode offload = new OffloadCode(code, n + "",context);
+        String output=offload.getConnection();
+        return output;
+    }
     static BigInteger fact(int N)
     {
         // Initialize result
@@ -17,3 +39,4 @@ public class factorial {
         return f;
     }
 }
+
