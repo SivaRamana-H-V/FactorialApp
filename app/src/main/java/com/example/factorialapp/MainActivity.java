@@ -1,10 +1,8 @@
 package com.example.factorialapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -24,8 +22,6 @@ import android.widget.Toast;
 import org.json.JSONException;
 
 import java.math.BigInteger;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     Button btnokay;
@@ -61,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 startTime = System.nanoTime();
                 BigInteger ans = null;
                 if (switchState) {
-                    factorial fact = new factorial(Integer.parseInt(n), MainActivity.this);
+                    factorial fact = new factorial(startTime, Integer.parseInt(n), MainActivity.this);
                     try {
                         output = fact.factorialUtil();
 
@@ -71,49 +67,16 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     ans = factorial.fact(Integer.parseInt(n));
-
-
-                    //Toast.makeText(MainActivity.this, ans.toString(), Toast.LENGTH_SHORT).show();
-
-                    //showing the popup
-                    if (!(Integer.parseInt(n) > 2 && ans.equals(0))) {
-                        LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        View customView = layoutInflater.inflate(R.layout.popup, null);
-                        popupWindow = new PopupWindow(customView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-                        button = customView.findViewById(R.id.cancel);
-                        valueoffact = customView.findViewById(R.id.factorialans);
-                        valueoffact.setMovementMethod(new ScrollingMovementMethod());
-                        valueofn = customView.findViewById(R.id.n);
-
-                        valueoffact.setText(ans.toString());
-                        valueofn.setText(n);
-
-                        popupWindow.setTouchable(true);
-                        popupWindow.setHeight(1800);
-                        popupWindow.setWidth(800);
-                        //popupWindow.setFocusable(true);
-                        //popupWindow.update();
-                        button.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                popupWindow.dismiss();
-                            }
-                        });
-
-                        popupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
-                    }
-                    long endTime = System.nanoTime();
-                    Toast.makeText(MainActivity.this, "Time taken = " + (endTime - startTime) + "ns", Toast.LENGTH_LONG).show();
+                    output = ans.toString();
+                    printSolution(output);
                 }
             }
         });
     }
-    void printSolution(String output,Context context){
+    void printSolution(String output){
         Log.e("Output", output );
-        initialize();
 //        if(!(Integer.parseInt(n)>2 )){
-            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View customView = layoutInflater.inflate(R.layout.popup,null);
             popupWindow = new PopupWindow(customView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 

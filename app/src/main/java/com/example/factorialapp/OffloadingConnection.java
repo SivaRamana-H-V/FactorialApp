@@ -1,6 +1,15 @@
 package com.example.factorialapp;
 
 import android.content.Context;
+import android.text.method.ScrollingMovementMethod;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +29,10 @@ import java.util.Map;
 public class OffloadingConnection {
     private static final int MY_SOCKET_TIMEOUT_MS = Integer.MAX_VALUE;
     Context context;
-    OffloadingConnection(Context context){
+    long startTime;
+    OffloadingConnection(long startTime, Context context){
         this.context=context;
+        this.startTime=startTime;
     }
     TextView textView;
     static String output;
@@ -36,17 +47,15 @@ public class OffloadingConnection {
 
                         try {
                             JSONObject respObj = new JSONObject(response);
-//                            textView.setText(respObj.getString("output"));
-                                output=respObj.getString("output");
-                            Toast.makeText(context, output, Toast.LENGTH_SHORT).show();
-                                MainActivity main=new MainActivity();
-                                main.printSolution(output,context);
-
+//                           textView.setText(respObj.getString("output"));
+                            output=respObj.getString("output");
+                            //Toast.makeText(context, output, Toast.LENGTH_SHORT).show();
+                            PopUp pop = new PopUp();
+                            pop.print(startTime, context,output);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -69,5 +78,7 @@ public class OffloadingConnection {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         return output;
     }
+
+
 
 }

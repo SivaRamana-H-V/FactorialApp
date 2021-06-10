@@ -9,9 +9,11 @@ import java.math.BigInteger;
 public class factorial {
     int n;
     Context context;
+    long startTime;
 
-    factorial(int n, Context context){
+    factorial(long startTime, int n, Context context){
         this.n=n;
+        this.startTime=startTime;
         this.context=context;
     }
     String code=""+
@@ -23,7 +25,7 @@ public class factorial {
         "System.out.print(f);"+
     "}";
     String factorialUtil() throws JSONException {
-        OffloadCode offload = new OffloadCode(code, n + "",context);
+        OffloadCode offload = new OffloadCode(startTime, code, n + "",context);
         String output=offload.getConnection();
         return output;
     }
