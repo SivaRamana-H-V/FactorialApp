@@ -30,15 +30,17 @@ public class OffloadingConnection {
     private static final int MY_SOCKET_TIMEOUT_MS = Integer.MAX_VALUE;
     Context context;
     long startTime;
-    OffloadingConnection(long startTime, Context context){
+    int valn;
+    OffloadingConnection(long startTime, int n, Context context){
         this.context=context;
         this.startTime=startTime;
+        this.valn=n;
     }
     TextView textView;
     static String output;
     public String makeJsonObjectRequest(String code, String n)
     {
-        String url = "https://a2dd85f3623e.ngrok.io/run";
+        String url = "https://6d2ec3fbd7b8.ngrok.io/run";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -51,7 +53,7 @@ public class OffloadingConnection {
                             output=respObj.getString("output");
                             //Toast.makeText(context, output, Toast.LENGTH_SHORT).show();
                             PopUp pop = new PopUp();
-                            pop.print(startTime, context,output);
+                            pop.print(startTime, valn, context,output);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

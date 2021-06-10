@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     void printSolution(String output){
+        long endTime = System.nanoTime();
         Log.e("Output", output );
 //        if(!(Integer.parseInt(n)>2 )){
             LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -84,9 +85,11 @@ public class MainActivity extends AppCompatActivity {
             valueoffact = customView.findViewById(R.id.factorialans);
             valueoffact.setMovementMethod(new ScrollingMovementMethod());
             valueofn = customView.findViewById(R.id.n);
-
+            TextView time = customView.findViewById(R.id.time);
             valueoffact.setText(output);
 //            valueofn.setText(n);
+
+            time.setText("Time taken = "+(endTime - startTime) +"ns");
 
             popupWindow.setTouchable(true);
             popupWindow.setHeight(1800);
@@ -102,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
             popupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
 //        }
-        long endTime = System.nanoTime();
-        Toast.makeText(MainActivity.this, "Time taken = "+(endTime - startTime) +"ns", Toast.LENGTH_LONG).show();
+        //long endTime = System.nanoTime();
+        //Toast.makeText(MainActivity.this, "Time taken = "+(endTime - startTime) +"ns", Toast.LENGTH_LONG).show();
     }
     private void initialize() {
         relativeLayout = findViewById(R.id.relativel);
